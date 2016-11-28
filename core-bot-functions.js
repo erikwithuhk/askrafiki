@@ -21,7 +21,7 @@ var prettyQueue = function() {
 };
 module.exports = function(bot, taID) {
 
-	var dianabot = function(message, cb) {
+	var askrafiki = function(message, cb) {
 		// the if/else if statements are for commands that don't rely
 		// on the wording as much
 		if (message.type === "message" && message.text !== undefined && message.text.indexOf(bot.mention) > -1) {
@@ -75,9 +75,9 @@ module.exports = function(bot, taID) {
 				backup(queue);
 			}
 		} else if(message.type === "hello") {
-			console.log("dianabot connected...");
+			console.log("askrafiki connected...");
 		}
 		cb(null, 'core-bot');
 	};
-	return dianabot;
+	return askrafiki;
 };
