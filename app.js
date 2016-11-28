@@ -17,4 +17,3 @@ for (var key in easterEggs) {
 }
 
 bot.connect();
-
