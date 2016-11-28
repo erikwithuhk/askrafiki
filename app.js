@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var request = require('request');
 var slackbot = require('./slackbot-new');
 var fs = require('fs');
