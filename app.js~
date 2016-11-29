@@ -7,7 +7,7 @@ var fs = require('fs');
 //var botKey = process.env.SLACK_BOT_KEY;
 var botKey = 'xoxb-109317866545-WxcbGUk9s8kHnb4nkXq1ktu1'
 //var taIDs = process.env.SLACK_USER_IDS.split(',');
-var taIDs = 'U1N52M23G,U35RL5H43'.split(',')
+var taIDs = 'U379BRGG1,U35RL5H43'.split(',')
 
 
 var bot = new slackbot(botKey);
