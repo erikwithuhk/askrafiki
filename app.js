@@ -1,11 +1,12 @@
-require('dotenv').config();
+if (!process.env) {
+  require('dotenv').config();
+}
 
 var request = require('request');
 var slackbot = require('./slackbot-new');
 var fs = require('fs');
 
 var botKey = process.env.SLACK_BOT_KEY;
-// var taIDs = process.env.SLACK_USER_ID;
 var taIDs = process.env.SLACK_USER_IDS.split(',');
 
 var bot = new slackbot(botKey);
