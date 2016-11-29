@@ -19,7 +19,7 @@ var prettyQueue = function() {
 	});
 	return "Current queue is now: " + (queueArray.length ? queueArray.join(", ") : "empty");
 };
-module.exports = function(bot, taID) {
+module.exports = function(bot, taIDs) {
 
 	var askrafiki = function(message, cb) {
 		// the if/else if statements are for commands that don't rely
@@ -29,9 +29,9 @@ module.exports = function(bot, taID) {
 			var statusMessage 		= message.text.indexOf("status") > -1,
 					queueMeMessage 		= message.text.indexOf("queue me") > -1 || message.text.indexOf("q me") > -1,
 					removeMeMessage 	= message.text.indexOf("remove me") > -1,
-					nextMessage 			= message.text.indexOf("next") > -1 && message.user === taID,
+					nextMessage 			= message.text.indexOf("next") > -1 && taIDs.includes(message.user),
 					helpMessage 			= message.text.indexOf("help") > -1,
-					clearQueueMessage = message.text.indexOf("clear queue") > -1 && message.user === taID;
+					clearQueueMessage = message.text.indexOf("clear queue") > -1 && taIDs.includes(message.user);
 
 			if (statusMessage) {
 				bot.sendMessage(message.channel, prettyQueue());

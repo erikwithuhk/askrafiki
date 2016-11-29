@@ -5,12 +5,13 @@ var slackbot = require('./slackbot-new');
 var fs = require('fs');
 
 var botKey = process.env.SLACK_BOT_KEY;
-var taID = process.env.SLACK_USER_ID;
+// var taIDs = process.env.SLACK_USER_ID;
+var taIDs = process.env.SLACK_USER_IDS.split(',');
 
 var bot = new slackbot(botKey);
 
-var askrafiki = require('./core-bot-functions')(bot, taID);
-var easterEggs = require('./easter-eggs')(bot, taID);
+var askrafiki = require('./core-bot-functions')(bot, taIDs);
+var easterEggs = require('./easter-eggs')(bot, taIDs);
 
 bot.use(askrafiki);
 
