@@ -16,7 +16,7 @@ try {
 var prettyQueue = function() {
 	console.log("prettyQueue firing:", queue)
 	var queueArray = queue.map(function(user) {
-		return user.profile.real_name;
+		return user.real_name;
 	});
 	return "Current queue is now: " + (queueArray.length ? queueArray.join(", ") : "empty");
 };
@@ -44,7 +44,7 @@ module.exports = function(bot, taIDs) {
 				// adding a user to the queue
 				if (queue.filter(function(e) {return e.id === message.user}).length === 0) {
 					bot.api("users.info", {user: message.user}, function(data) {
-						console.log("queueMeMessage firing: ", data.user)
+						console.log("queueMeMessage firing: ", data)
 						queue.push(data.user);
 						bot.sendMessage(message.channel, prettyQueue());
 						backup(queue);
@@ -67,12 +67,9 @@ module.exports = function(bot, taIDs) {
 				var currentStudent = queue.shift();
 				if (currentStudent) {
           bot.api("users.info", {user: message.user}, function(data) {
-		console.log("message", message); 
-		console.log("nextMessage firing: ",data);
-		console.log("current Student: ", currentStudent);
+		console.log("nextMessage firing: ",data)
             var currentTA = data.user;
-		console.log("currentTA: ", currentTA)
-            bot.sendMessage(message.channel, "Up now with " + currentTA.profile.real_name + ": <@" + currentStudent.id + "> -- " + prettyQueue());
+            bot.sendMessage(message.channel, "Up now with " + currentTA.real_name + ": <@" + currentStudent.id + "> -- " + prettyQueue());
             backup(queue);
           });
 				}
