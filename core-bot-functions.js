@@ -61,8 +61,11 @@ module.exports = function(bot, taIDs) {
 				// next student
 				var currentStudent = queue.shift();
 				if (currentStudent) {
-					bot.sendMessage(message.channel, "Up now: <@" + currentStudent.id + "> -- " + prettyQueue());
-					backup(queue);
+          bot.api("users.info", {user: message.user}, function(data) {
+            var currentTA = data.user;
+            bot.sendMessage(message.channel, "Up now with " + currentTA.real_name + ": <@" + currentStudent.id + "> -- " + prettyQueue());
+            backup(queue);
+          });
 				}
 
 			} else if (helpMessage) {
